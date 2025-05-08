@@ -131,7 +131,7 @@ const CourseList = () => {
                       <tr>
                         <th className="text-nowrap">Image</th>
                         <th className="text-nowrap">Name</th>
-                        <th className="text-nowrap">Description</th>
+                        <th className="text-nowrap">JoinCode</th>
                         <th className="text-nowrap">Course Type</th>
                         <th className="text-nowrap">Duration</th>
                         <th className="text-nowrap">Actions</th>

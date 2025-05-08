@@ -363,22 +363,14 @@ const CourseForm = () => {
                     <Label for={`subject-description-${subjectIndex}`}>
                       Subject Description
                     </Label>
-                    <Input
-                      type="text"
-                      id={`subject-description-${subjectIndex}`}
-                      value={subject.description}
-                      onChange={(e) =>
-                        handleSubjectChange(
-                          subjectIndex,
-                          "description",
-                          e.target.value
-                        )
-                      }
-                    />
                     <ReactQuill
                   value={subject.description || ""}
                   onChange={(value) =>
-                    setCourseData((prev) => ({ ...prev, description: value }))
+                    handleSubjectChange(
+                      subjectIndex,
+                      "description",
+                      value
+                    )
                   }
                 />
                   </FormGroup>

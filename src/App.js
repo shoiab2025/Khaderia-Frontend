@@ -47,7 +47,7 @@ const App = () => {
             </ProtectedRoute>
           }
         >
-          <Route path="/instructor" element={<Navigate to="/instructor/starter" />} />
+          <Route path="/instructor" element={<Navigate to="/instructor/courses" />} />
           <Route path="/instructor/starter" element={<Starter />} />
           <Route path="/instructor/groups" element={<GroupList />} />
           <Route path="/instructor/create-group" element={<GroupForm />} />
@@ -66,10 +66,10 @@ const App = () => {
         <Route
           path='/'
           element={
-            <StudentFullLayout />
+            <FullLayout />
           }
         >
-          <Route path="/" element={<Navigate to="/home" />} />
+          <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/courses" element={<CourseList />} />
           <Route path="/student-courses" element={<StudentCourseList />} />
           <Route path="/course/details/:id" element={<CourseDetails />} />

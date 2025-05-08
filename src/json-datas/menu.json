@@ -1,28 +1,14 @@
 [
     {
-      "title": "Dashboard",
-      "href": "/instructor/starter",
-      "icon": "bi bi-speedometer2"
-    },
-    {
       "title": "Courses",
       "href": "/instructor/courses",
       "icon": "bi bi-book-half"
     },
+    
     {
       "title": "Tests",
       "href": "/instructor/test",
       "icon": "bi bi-pen-fill"
-    },
-    {
-      "title": "Users",
-      "href": "/instructor/users",
-      "icon": "bi bi-people-fill"
-    },
-    {
-      "title": "Approvals",
-      "href": "/instructor/approvals",
-      "icon": "bi bi-shield-fill-check"
     }
     
   ] 
