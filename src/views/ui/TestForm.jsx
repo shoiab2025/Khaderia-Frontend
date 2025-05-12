@@ -41,9 +41,9 @@ const TestFormReact = () => {
   const [subject, setSubject] = useState([]);
 
   useEffect(() => {
-    if (tests?.data) {
+    if (tests?.data && !testForm.test_name) {  // Ensure testForm is not already populated
       setTestForm({
-        test_name: tests.data.test_name || "",
+         test_name: tests.data.test_name || "",
         test_type: tests.data.course_type || "pre-test",
         test_duration: tests.data.test_duration || "",
         test_subject: tests.data.test_subject?._id || "",
@@ -51,7 +51,7 @@ const TestFormReact = () => {
         test_questions: tests.data.test_questions || [defaultQuestion()],
         created_by: user,
       });
-
+  
       const selectedSubject = course.find(
         (c) => c._id === tests.data.test_subject?._id
       );
@@ -59,7 +59,7 @@ const TestFormReact = () => {
         setSubject(selectedSubject.subjects);
       }
     }
-  }, [tests, course]);
+  }, [tests, course, user, testForm]);
 
   const handleInputChange = (field, value) => {
     if (field === "test_subject") {
