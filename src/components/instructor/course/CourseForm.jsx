@@ -277,128 +277,136 @@ const CourseForm = () => {
                   <option value="academic">Academic</option>
                   <option value="school">School</option>
                   <option value="college">College</option>
-                  {/* Add more content types as needed */}
-                </Input>
-              </FormGroup>
-              <FormGroup>
-                <Label for="duration">Duration (hours)</Label>
-                <Input
-                  type="number"
-                  value={duration(courseData.subjects)}
-                  className="form-control"
-                  onChange={(e) =>
-                    setCourseData({ ...courseData, duration: e.target.value })
-                  }
-                />
-              </FormGroup>
-              <FormGroup>
-                <Label for="imageUrl">Image URL</Label>
-                <Input
-                  type="text"
-                  value={courseData.imageUrl}
-                  className="form-control"
-                  onChange={(e) =>
-                    setCourseData({ ...courseData, imageUrl: e.target.value })
-                  }
-                />
-              </FormGroup>
-              {/* Image Preview */}
-              {courseData.imageUrl && (
-                <div className="image-preview mt-2">
-                  <Label>Image Preview:</Label>
-                  <img
-                    src={courseData.imageUrl}
-                    alt="Course Preview"
-                    style={{
-                      width: "100%",
-                      height: "auto",
-                      maxHeight: "300px",
-                      objectFit: "contain",
-                    }}
-                  />
-                </div>
-              )}
-            </TabPane>
+                          </Input>
+                          </FormGroup>
+                          <FormGroup>
+                          <Label for="duration">Duration (hours)</Label>
+                          <Input
+                            type="number"
+                            value={duration(courseData.subjects)}
+                            className="form-control"
+                            onChange={(e) =>
+                            setCourseData({ ...courseData, duration: e.target.value })
+                            }
+                          />
+                          </FormGroup>
+                          <FormGroup>
+                          <Label for="imageUrl">Image URL</Label>
+                          <Input
+                            type="text"
+                            value={courseData.imageUrl}
+                            className="form-control"
+                            onChange={(e) =>
+                            setCourseData({ ...courseData, imageUrl: e.target.value })
+                            }
+                          />
+                          </FormGroup>
+                          {/* Image Preview */}
+                          {courseData.imageUrl && (
+                          <div className="image-preview mt-2">
+                            <Label>Image Preview:</Label>
+                            <div
+                            style={{
+                              width: "100%",
+                              height: "auto",
+                              maxHeight: "300px",
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              border: "1px solid #ddd",
+                              borderRadius: "4px",
+                              overflow: "hidden",
+                            }}
+                            >
+                            <img
+                              src={(courseData.imageUrl).toString()}
+                              alt="Course Preview"
+                              style={{
+                              maxWidth: "100%",
+                              maxHeight: "100%",
+                              objectFit: "contain",
+                              }}
+                            />
+                            </div>
+                          </div>
+                          )}
+                        </TabPane>
 
-            {/* Subjects Tab */}
-            <TabPane tabId={TABS.SUBJECTS} style={{ padding: "20px" }}>
-              {courseData.subjects.map((subject, subjectIndex) => (
-                <div key={subjectIndex} className="mb-3">
-                  <div
-                    style={{ display: "flex", justifyContent: "space-between" }}
-                  >
-                    <h4>Subject {subjectIndex + 1}</h4>
-                    <Button
-                      color="danger"
-                      onClick={() =>
-                        setCourseData({
-                          ...courseData,
-                          subjects: courseData.subjects.filter(
-                            (_, index) => index !== subjectIndex
-                          ),
-                        })
-                      }
-                    >
-                      <i className="bi bi-x-circle-fill"></i>
-                    </Button>
-                  </div>
-                  <FormGroup>
-                    <Label for={`subject-name-${subjectIndex}`}>
-                      Subject Name
-                    </Label>
-                    <Input
-                      type="text"
-                      id={`subject-name-${subjectIndex}`}
-                      value={subject.name}
-                      onChange={(e) =>
-                        handleSubjectChange(
-                          subjectIndex,
-                          "name",
-                          e.target.value
-                        )
-                      }
-                    />
-                  </FormGroup>
-                  <FormGroup>
-                    <Label for={`subject-description-${subjectIndex}`}>
-                      Subject Description
-                    </Label>
-                    <ReactQuill
-                  value={subject.description || ""}
-                  onChange={(value) =>
-                    handleSubjectChange(
-                      subjectIndex,
-                      "description",
-                      value
-                    )
-                  }
-                />
-                  </FormGroup>
-                  <FormGroup>
-                    <Label for={`subject-duration-${subjectIndex}`}>
-                      Subject Duration (hours)
-                    </Label>
-                    <Input
-                      type="number"
-                      id={`subject-duration-${subjectIndex}`}
-                      value={subject.duration}
-                      onChange={(e) =>
-                        handleSubjectChange(
-                          subjectIndex,
-                          "duration",
-                          e.target.value
-                        )
-                      }
-                    />
-                  </FormGroup>
-                </div>
-              ))}
-              <Button color="primary" onClick={addSubject}>
-                <i class="bi bi-plus-circle-fill"></i> Add
-              </Button>
-            </TabPane>
+                        {/* Subjects Tab */}
+                        <TabPane tabId={TABS.SUBJECTS} style={{ padding: "20px" }}>
+                          {courseData.subjects.map((subject, subjectIndex) => (
+                          <div key={subjectIndex} className="mb-3">
+                            <div
+                            style={{ display: "flex", justifyContent: "space-between" }}
+                            >
+                            <h4>Subject {subjectIndex + 1}</h4>
+                            <Button
+                              color="danger"
+                              onClick={() =>
+                              setCourseData({
+                                ...courseData,
+                                subjects: courseData.subjects.filter(
+                                (_, index) => index !== subjectIndex
+                                ),
+                              })
+                              }
+                            >
+                              <i className="bi bi-x-circle-fill"></i>
+                            </Button>
+                            </div>
+                            <FormGroup>
+                            <Label for={`subject-name-${subjectIndex}`}>
+                              Subject Name
+                            </Label>
+                            <Input
+                              type="text"
+                              id={`subject-name-${subjectIndex}`}
+                              value={subject.name}
+                              onChange={(e) =>
+                              handleSubjectChange(
+                                subjectIndex,
+                                "name",
+                                e.target.value
+                              )
+                              }
+                            />
+                            </FormGroup>
+                            <FormGroup>
+                            <Label for={`subject-description-${subjectIndex}`}>
+                              Subject Description
+                            </Label>
+                            <ReactQuill
+                              value={subject.description || ""}
+                              onChange={(value) =>
+                              handleSubjectChange(subjectIndex, "description", value)
+                              }
+                            />
+                            </FormGroup>
+                            <FormGroup>
+                            <Label for={`subject-duration-${subjectIndex}`}>
+                              Subject Duration (hours)
+                            </Label>
+                            <Input
+                              type="number"
+                              id={`subject-duration-${subjectIndex}`}
+                              value={subject.duration}
+                              onChange={(e) =>
+                              handleSubjectChange(
+                                subjectIndex,
+                                "duration",
+                                e.target.value
+                              )
+                              }
+                            />
+                            </FormGroup>
+                          </div>
+                          ))}
+                          <Button color="primary" onClick={addSubject}>
+                          <i className="bi bi-plus-circle-fill"></i> Add
+                          </Button>
+                        </TabPane>
 
-            {/* Materials Tab */}
+                        {/* Materials Tab */}
             <TabPane tabId={TABS.MATERIALS} style={{ padding: "20px" }}>
               {courseData.subjects.map((subject, subjectIndex) => (
                 <div key={subjectIndex}>

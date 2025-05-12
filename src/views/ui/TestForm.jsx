@@ -41,25 +41,29 @@ const TestFormReact = () => {
   const [subject, setSubject] = useState([]);
 
   useEffect(() => {
-    if (tests?.data && !testForm.test_name) {  // Ensure testForm is not already populated
+    if (tests?.data && !testForm.test_name) {
+      const loadedSubjectId = tests.data.test_subject?._id;
+      const selectedCourse = course.find(
+        (c) => String(c._id) === String(loadedSubjectId)
+      );
+
       setTestForm({
          test_name: tests.data.test_name || "",
         test_type: tests.data.course_type || "pre-test",
         test_duration: tests.data.test_duration || "",
-        test_subject: tests.data.test_subject?._id || "",
+        test_subject: loadedSubjectId || "",
         test_lesson: tests.data.test_lesson?._id || "",
         test_questions: tests.data.test_questions || [defaultQuestion()],
         created_by: user,
       });
-  
-      const selectedSubject = course.find(
-        (c) => c._id === tests.data.test_subject?._id
-      );
-      if (selectedSubject) {
-        setSubject(selectedSubject.subjects);
+
+      if (selectedCourse && selectedCourse.subjects) {
+        setSubject(selectedCourse.subjects);
+      } else {
+        console.warn("Course not found or has no lessons (subjects)");
       }
     }
-  }, [tests, course, user, testForm]);
+  }, [tests, course, user, testForm.test_name]);
 
   const handleInputChange = (field, value) => {
     if (field === "test_subject") {
@@ -159,6 +163,8 @@ const TestFormReact = () => {
       console.error("Error saving test:", error);
     }
   };
+
+  console.log("The test Form ", testForm);
 
   return (
     <div className="test-form-container">
@@ -326,7 +332,7 @@ const TestFormReact = () => {
                             }
                           /> */}
                           <ReactQuill
-                          value={option.text}
+                            value={option.text}
                             onChange={(content) =>
                               handleOptionChange(qIndex, oIndex, content)
                             }
@@ -469,11 +475,11 @@ const TestFormReact = () => {
             <button
               type="button"
               onClick={prevTab}
-              className="test-button-secondary"
+              className="test-button-secondary test-button"
             >
               Previous
             </button>
-            <button type="submit" className="test-button-primary">
+            <button type="submit" className="test-button-primary test-button">
               Submit
             </button>
           </div>
