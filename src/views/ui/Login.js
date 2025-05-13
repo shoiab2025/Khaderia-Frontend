@@ -22,7 +22,7 @@ const Login = () => {
     e.preventDefault(); 
 
     try {
-      const response = await axios.post('http://13.60.238.65:2000/api/users/sign_in', {
+      const response = await axios.post('http://localhost:2000/api/users/sign_in', {
         username: username,
         password: password,
       });

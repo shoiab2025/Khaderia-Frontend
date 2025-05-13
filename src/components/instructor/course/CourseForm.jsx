@@ -71,6 +71,7 @@ const CourseForm = () => {
             imageUrl: fetchedCourseData.imageUrl || "",
             join_code: fetchedCourseData.join_code || "",
             subjects: fetchedCourseData.subjects.map((subject) => ({
+              _id: subject._id || "",
               name: subject.name || "",
               description: subject.description || "",
               duration: subject.duration || "",

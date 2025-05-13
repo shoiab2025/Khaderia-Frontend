@@ -39,14 +39,14 @@ const TestFormReact = () => {
   const { createTest } = useCreateTests();
   const { course } = useCourse();
   const [subject, setSubject] = useState([]);
-
+  console.log("Tests Data", tests)
   useEffect(() => {
     if (tests?.data && !testForm.test_name) {
       const loadedSubjectId = tests.data.test_subject?._id;
+      const loadedLessonId = tests.data.test_subject?._id;
       const selectedCourse = course.find(
         (c) => String(c._id) === String(loadedSubjectId)
       );
-
       setTestForm({
         test_name: tests.data.test_name || "",
         test_type: tests.data.course_type || "pre-test",
